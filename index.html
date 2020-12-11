@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Discord Oauth2 Tutorial</title>
+    <style>
+      .container {
+        display: flex;
+        width: 100%;
+        padding: 40px 0;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .container a {
+        background: #7289DA;
+        padding: 10px 20px;
+        line-height: 35px;
+        color: #fff;
+        font-family: 'Helvetica', 'Arial', sans-sefir;
+        font-size: 30px;
+        display: block;
+        text-decoration: none;
+        border-radius: 3px;
+      }
+
+      .display_result_container {
+        display: flex;
+        width: 100%;
+        padding: 40px 0;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .display_result_container div {
+        background: #7289DA;
+        padding: 20px 20px;
+        line-height: 35px;
+        color: #fff;
+        font-family: 'Helvetica', 'Arial', sans-sefir;
+        font-size: 20px;
+        display: block;
+        text-decoration: none;
+        border-radius: 3px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class = "container">
+      <a href = "https://discord.com/api/oauth2/authorize?client_id=749030863307669504&redirect_uri=https%3A%2F%2Fdiscord-oauth-tutorial.thomaszhou2.repl.co&response_type=code&scope=identify">Login with Discord</a>
+    </div>
+    <div class = "display_result_container">
+      <div id = "display_result"></div>
+    </div>
+    <script>
+      window.onload = () => {
+        const code = location.href.substring(location.href.indexOf("code")+5, location.href.length)
+
+        document.getElementById("display_result").innerText = "Please login to see your stats"
+
+        if (location.href.indexOf("code") > -1) {
+          const req = new XMLHttpRequest()
+          req.open("POST", "https://discord-oauth-tutorial.thomaszhou2.repl.co")
+          req.send(code)
+          document.getElementById("display_result").innerText = "Loading..."
+          req.onload = () => {
+            document.getElementById("display_result").innerText = req.responseText
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
