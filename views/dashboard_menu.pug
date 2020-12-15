@@ -1,0 +1,32 @@
+doctype html
+html
+   head
+      title Dashboard Menu
+      link(rel='stylesheet' href='dashboard_menu.css' type='text/css')
+   body
+      div.refresh_login
+        a(href="/login") Click to Re-Fetch the Latest Guilds Data
+      div.prompt
+        h1 Please Select a Server
+      div.guilds
+        ul
+          for guild in guilds
+            div.guild
+              if guild.icon === null
+                img(src="no_icon.png")
+              else
+                - const iconURL = `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.webp?size=64`
+                img(src=iconURL)
+
+              a=guild.name
+
+              if guild.hasBot
+                - const redirect = `window.location.href='/dashboard/${guild.id}'`
+                button(onclick=redirect class="open_dashboard align_right") Open Dashboard
+              else
+                - const inviteLink = `window.location.href="https://discord.com/api/oauth2/authorize?client_id=${CLIENT_ID}&permissions=8&redirect_uri=${URI}/dashboard&response_type=code&scope=bot%20identify&guild_id=${guild.id}"`
+                button(onclick=inviteLink class="invite_bot align_right") Invite Bot
+          else
+            p Please join a server or create a server that you have Manage Server permmision in to get started!
+
+                

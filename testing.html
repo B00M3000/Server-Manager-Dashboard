@@ -1,0 +1,5 @@
+<li>
+  <img src="${iconURL}">
+  <a>${guild.name}</a>
+  <button onclick="window.location.href='https://discord.com/api/oauth2/authorize?client_id=${process.env.CLIENT_ID}&permissions=8&scope=bot&guild_id=${guild.id}'" class="button invite_bot">Invite Bot</button>
+</li>

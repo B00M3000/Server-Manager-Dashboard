@@ -1,0 +1,97 @@
+.refresh_login {
+  display: flex;
+  width: 100%;
+  padding: 40px 0;
+  align-items: center;
+  justify-content: center;
+}
+.refresh_login a {
+  background: #7289DA;
+  padding: 0 20px;
+  line-height: 35px;
+  color: #fff;
+  font-family: 'Helvetica', 'Arial', sans-sefir;
+  font-size: 20px;
+  display: block;
+  text-decoration: none;
+  border-radius: 3px;
+}
+.guilds {
+  display: flex;
+  width: 100%;
+  padding: 5px 0;
+  align-items: center;
+  justify-content: center;
+}
+.guilds ul {
+  column-count: 1;
+}
+.guilds li {
+  line-height: 35px;
+  color: #fff;
+  font-family: 'Helvetica', 'Arial', sans-sefir;
+  font-size: 12px;
+  display: block;
+  text-decoration: none;
+}
+.guild button {
+  border: none;
+  color: white;
+  padding: 0px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 10px;
+  cursor: pointer;
+  vertical-align: middle;
+}
+.guild {
+  background-color: red;
+  margin: 10px 10px;
+  border-radius: 5px;
+}
+.guild img {
+  vertical-align: middle;
+  border-radius: 50%;
+  margin: 10px;
+  padding: 0 10px;
+}
+.invite_bot {
+  background-color: #595959;
+}
+.open_dashboard {
+  background-color: #44b280;
+}
+.invite_bot:hover {
+  background-color: #202125;
+}
+.open_dashboard:hover {
+  background-color: #2f7c58;
+}
+.prompt {
+  display: flex;
+  width: 100%;
+  padding: 40px 0;
+  align-items: center;
+  justify-content: center;
+}
+.prompt h1 {
+  padding: 0 20px;
+  line-height: 35px;
+  color: #fff;
+  font-family: 'Helvetica', 'Arial', sans-sefir;
+  font-size: 20px;
+  display: block;
+  text-decoration: none;
+  border-radius: 3px;
+}
+body {
+  background: #34373c;
+}
+.align_right {
+  float: right;
+}
+.align_items_center {
+  align-items: center;
+}
