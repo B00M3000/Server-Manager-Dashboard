@@ -1,12 +1,21 @@
-var express = require('express');
-var app = express();
-var bodyParser = require('body-parser');
-var path = require('path')
-var cookieParser = require('cookie-parser');
+const express = require('express');
+const bodyParser = require('body-parser');
+const path = require('path')
+const cookieParser = require('cookie-parser');
+const http = require('http')
+const socketio = require('socket.io')
 
-var mongo = require('./mongo.js')
-var login = require('./routes/login.js')
-var dashboard = require('./routes/dashboard')
+const mongo = require('./mongo.js')
+const login = require('./routes/login.js')
+const dashboard = require('./routes/dashboard')
+
+const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay))
+
+const app = express();
+const server = http.createServer(app)
+const io = socketio(server)
+
+const PORT = process.env.PORT || 3000
 
 app.use(bodyParser.text());
 app.use(cookieParser());
@@ -21,8 +30,32 @@ app.get('/', (req, res) => {
 app.use('/login', login)
 app.use('/dashboard', dashboard)
 
-app.listen(3000, async () => {
-  console.log('Application is online!')
-  await mongo()
+io.on('connection', async socket => {
+  new Promise((resolve, reject) => {
+    socket.on('type', _type => {
+      resolve(_type)
+    })
+    sleep(2500).then(() => {
+      reject(`Socket ${socket.id} took too long to send socket type!`)
+    })
+  })
+    .then(type => {
+      console.log(`New Socket Connection! ID: ${socket.id} TYPE: ${type}|`)
+      socket.on('disconnect', () => {
+        console.log(`Socket Disconnected! ID: ${socket.id}`)
+      })
+      socket.emit('message', `Socket ID: ${socket.id}`)
+    })
+    .catch(error => {
+      console.log(error)
+      socket.emit('message', `Socket took too long to send socket type, please refresh the page to try again!`)
+    })
+})
+
+server.listen(PORT, async () => {
+  console.log(`Server is online and listening to port ${PORT}`)
+})
+
+mongo().then(connection => {
   console.log('MongoDB connection established!')
 })

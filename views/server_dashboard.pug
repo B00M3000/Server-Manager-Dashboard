@@ -2,6 +2,13 @@ doctype html
 html
    head
       title Dashboard Menu
-      link(rel='stylesheet', href='server_dashboard.css', type='text/css')
+      link(rel='stylesheet' href='/css/server_dashboard.css' type='text/css')
    body
-      
+      div.go_back
+        button(onclick="window.location.href='/dashboard'") <= Go back to Server List
+      div.prompt
+        h1 #{guild.name}
+      div.modules
+            
+
+                

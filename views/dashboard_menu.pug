@@ -2,10 +2,10 @@ doctype html
 html
    head
       title Dashboard Menu
-      link(rel='stylesheet' href='dashboard_menu.css' type='text/css')
+      link(rel='stylesheet' href='/css/dashboard_menu.css' type='text/css')
    body
       div.refresh_login
-        a(href="/login") Click to Re-Fetch the Latest Guilds Data
+        button(onclick="window.location.href='/login'") Click to Re-Fetch the Latest Guilds Data
       div.prompt
         h1 Please Select a Server
       div.guilds
@@ -18,7 +18,7 @@ html
                 - const iconURL = `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.webp?size=64`
                 img(src=iconURL)
 
-              a=guild.name
+              a #{guild.name}
 
               if guild.hasBot
                 - const redirect = `window.location.href='/dashboard/${guild.id}'`
@@ -28,5 +28,8 @@ html
                 button(onclick=inviteLink class="invite_bot align_right") Invite Bot
           else
             p Please join a server or create a server that you have Manage Server permmision in to get started!
+
+      script(src="/socket.io/socket.io.js")
+      script(src="js/dashboard_menu.js")
 
                 

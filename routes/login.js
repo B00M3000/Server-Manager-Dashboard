@@ -8,7 +8,7 @@ const User = require('../schemas/User.js')
 var router = express.Router()
 
 router.get('/', (req, res) => {
-  res.redirect(`https://discord.com/api/oauth2/authorize?client_id=${process.env.CLIENT_ID}&redirect_uri=${process.env.URL}/login/callback&response_type=code&scope=identify&prompt=none`)
+  res.redirect(`https://discord.com/api/oauth2/authorize?client_id=${process.env.CLIENT_ID}&redirect_uri=${process.env.URL}/login/callback&response_type=code&scope=identify%20guilds&prompt=none`)
 })
 
 router.get('/callback', (req, res) => {
@@ -20,6 +20,7 @@ router.get('/callback', (req, res) => {
   data.append('grant_type', 'authorization_code')
   data.append('redirect_uri', process.env.URL + '/login/callback')
   data.append('scope', 'identify')
+  data.append('scope', 'guilds')
   data.append('code', code)
 
   fetch('https://discordapp.com/api/oauth2/token', {
@@ -58,6 +59,7 @@ router.get('/callback', (req, res) => {
         res.redirect(`/dashboard`)
       } catch(error) {
         console.log(error)
+        console.log(data)
       }
     })
 })

@@ -5,20 +5,20 @@
   align-items: center;
   justify-content: center;
 }
-.refresh_login a {
-  background: #7289DA;
-  padding: 0 20px;
-  line-height: 35px;
-  color: #fff;
-  font-family: 'Helvetica', 'Arial', sans-sefir;
-  font-size: 20px;
-  display: block;
+.refresh_login button {
+  border: none;
+  color: white;
+  padding: 10px 32px;
+  text-align: center;
   text-decoration: none;
-  border-radius: 3px;
+  display: inline-block;
+  font-size: 14px;
+  margin: 10px;
+  border-radius: 5px;
+  background-color: #595959;
 }
 .guilds {
   display: flex;
-  width: 100%;
   padding: 5px 0;
   align-items: center;
   justify-content: center;
@@ -37,18 +37,20 @@
 .guild button {
   border: none;
   color: white;
-  padding: 0px 32px;
+  padding: 10px 32px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 14px;
   margin: 10px;
-  cursor: pointer;
-  vertical-align: middle;
+  border-radius: 5px;
 }
 .guild {
-  background-color: red;
-  margin: 10px 10px;
+  background-color: #c1c1c1;
+  border-style: solid;
+  border-color: #669999;
+  border-width: 5px 10px;
+  margin: 10px;
   border-radius: 5px;
 }
 .guild img {
