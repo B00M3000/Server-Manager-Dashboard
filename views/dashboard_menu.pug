@@ -1,35 +1,31 @@
 doctype html
 html
    head
-      title Dashboard Menu
+      include includes/header.pug
       link(rel='stylesheet' href='/css/dashboard_menu.css' type='text/css')
    body
       div.refresh_login
         button(onclick="window.location.href='/login'") Click to Re-Fetch the Latest Guilds Data
       div.prompt
         h1 Please Select a Server
-      div.guilds
-        ul
-          for guild in guilds
-            div.guild
-              if guild.icon === null
-                img(src="no_icon.png")
-              else
-                - const iconURL = `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.webp?size=64`
-                img(src=iconURL)
+      div#guilds
+        for guild in guilds
+          div.guild
+            if guild.icon === null
+              img(src="no_icon.png")
+            else
+              - const iconURL = `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.webp?size=64`
+              img(src=iconURL)
 
-              a #{guild.name}
+            a #{guild.name}
 
-              if guild.hasBot
-                - const redirect = `window.location.href='/dashboard/${guild.id}'`
-                button(onclick=redirect class="open_dashboard align_right") Open Dashboard
-              else
-                - const inviteLink = `window.location.href="https://discord.com/api/oauth2/authorize?client_id=${CLIENT_ID}&permissions=8&redirect_uri=${URI}/dashboard&response_type=code&scope=bot%20identify&guild_id=${guild.id}"`
-                button(onclick=inviteLink class="invite_bot align_right") Invite Bot
-          else
-            p Please join a server or create a server that you have Manage Server permmision in to get started!
-
-      script(src="/socket.io/socket.io.js")
-      script(src="js/dashboard_menu.js")
+            if guild.hasBot
+              - const redirect = `window.location.href='/dashboard/${guild.id}'`
+              button.open_dashboard(onclick=redirect) Open Dashboard
+            else
+              - const inviteLink = `window.location.href="https://discord.com/api/oauth2/authorize?client_id=${CLIENT_ID}&permissions=8&redirect_uri=${URI}/dashboard&response_type=code&scope=bot%20identify&guild_id=${guild.id}"`
+              button.invite_bot(onclick=inviteLink) Invite Bot
+        else
+          p Please join a server or create a server that you have Manage Server permmision in to get started!
 
                 

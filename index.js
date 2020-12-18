@@ -12,10 +12,8 @@ const dashboard = require('./routes/dashboard')
 const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay))
 
 const app = express();
-const server = http.createServer(app)
-const io = socketio(server)
 
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 8080
 
 app.use(bodyParser.text());
 app.use(cookieParser());
@@ -30,30 +28,23 @@ app.get('/', (req, res) => {
 app.use('/login', login)
 app.use('/dashboard', dashboard)
 
-io.on('connection', async socket => {
-  new Promise((resolve, reject) => {
-    socket.on('type', _type => {
-      resolve(_type)
-    })
-    sleep(2500).then(() => {
-      reject(`Socket ${socket.id} took too long to send socket type!`)
-    })
-  })
-    .then(type => {
-      console.log(`New Socket Connection! ID: ${socket.id} TYPE: ${type}|`)
-      socket.on('disconnect', () => {
-        console.log(`Socket Disconnected! ID: ${socket.id}`)
-      })
-      socket.emit('message', `Socket ID: ${socket.id}`)
-    })
-    .catch(error => {
-      console.log(error)
-      socket.emit('message', `Socket took too long to send socket type, please refresh the page to try again!`)
-    })
+app.get('*', (req, res) => res.render('errors/404'))
+
+// Handle 404
+app.use((req, res) => {
+  res.status(404)
+  res.render('errors/404')
 })
 
-server.listen(PORT, async () => {
-  console.log(`Server is online and listening to port ${PORT}`)
+// Handle 500
+app.use((error, req, res, next) => {
+  res.status(505)
+  res.render('errors/500')
+  console.log(error)
+});
+
+app.listen(PORT, async () => {
+  console.log(`Application is online and listening to port ${PORT}`)
 })
 
 mongo().then(connection => {

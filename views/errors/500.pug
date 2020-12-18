@@ -1,0 +1,9 @@
+doctype html
+head
+  include ../includes/header.pug
+  link(rel="stylesheet" href="/css/500.css" type="text/css")
+body
+  div.container.center
+    img(src="404.svg")
+    h6#error_text Internal Server Error
+    button(onclick="window.location.href='/'") Back to Home!
