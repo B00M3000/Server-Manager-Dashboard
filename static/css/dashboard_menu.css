@@ -2,13 +2,10 @@
   display: block;
 }
 .guild {
-  margin-top: 10px;
-  margin-right: max(auto, 10px);
-  margin-bottom: 10px;
-  margin-left: max(auto, 10px);
+  margin: 10px max(25%, 25px);
   border-radius: 5px;
   display: flex;
-  max-width: 750px;
+  max-width: 700px;
 }
 .guild img {
   width: 64px;

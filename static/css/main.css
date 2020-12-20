@@ -48,9 +48,7 @@ button.grey:hover {
 }
 
 .prompt {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: block;
 }
 
 .prompt h1 {
@@ -60,6 +58,7 @@ button.grey:hover {
   font-size: 20px;
   margin: auto;
   text-decoration: none;
+  text-align: center;
 }
 
 .circle {
