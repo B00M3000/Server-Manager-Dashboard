@@ -2,6 +2,66 @@ body {
   background: #34373c;
 }
 
-button {
+button.small {
+  border: none;
+  padding: 10px 32px;
+  font-size: 14px;
+  text-align: center;
+  text-decoration: none;
   border-radius: 5px;
+}
+
+button.large {
+  border: none;
+  padding: 10px 32px;
+  font-size: 27px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 10px;
+}
+
+button.light_blue {
+  color: white;
+  background-color: #4DA6FF;
+}
+
+button.light_blue:hover {
+  background-color: #1966FF;
+}
+
+button.green {
+  color: white;
+  background-color: #44b280;
+}
+
+button.green:hover {
+  background-color: #2f7c58;
+}
+
+button.grey {
+  color: white;
+  background-color: #595959;
+}
+
+button.grey:hover {
+  background-color: #202125;
+}
+
+.prompt {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.prompt h1 {
+  line-height: 35px;
+  color: #fff;
+  font-family: 'Helvetica', 'Arial', sans-sefir;
+  font-size: 20px;
+  margin: auto;
+  text-decoration: none;
+}
+
+.circle {
+  border-radius: 50%;
 }

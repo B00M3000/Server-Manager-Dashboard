@@ -1,41 +1,21 @@
-.refresh_login {
-  display: flex;
-  width: 100%;
-  padding: 20px;
-  align-items: center;
-  justify-content: center;
-}
-.refresh_login button {
-  border: none;
-  color: white;
-  padding: 10px 32px;
-  text-align: center;
-  text-decoration: none;
-  font-size: 14px;
-  background-color: #595959;
-}
 #guilds {
   display: block;
 }
 .guild {
-  margin: 10px 25%;
+  margin-top: 10px;
+  margin-right: max(auto, 10px);
+  margin-bottom: 10px;
+  margin-left: max(auto, 10px);
   border-radius: 5px;
   display: flex;
   max-width: 750px;
 }
 .guild img {
-  border-radius: 50%;
   width: 64px;
   height: 64px;
   vertical-align: middle;
 }
 .guild button {
-  border: none;
-  color: white;
-  padding: 10px 32px;
-  text-align: center;
-  text-decoration: none;
-  font-size: 14px;
   margin: auto 0 auto auto;
   vertical-align: middle;
   align-self: flex-end;
@@ -49,33 +29,4 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-.invite_bot {
-  background-color: #595959;
-}
-.open_dashboard {
-  background-color: #44b280;
-}
-.invite_bot:hover {
-  background-color: #202125;
-}
-.open_dashboard:hover {
-  background-color: #2f7c58;
-}
-.prompt {
-  display: flex;
-  width: 100%;
-  padding: 40px 0;
-  align-items: center;
-  justify-content: center;
-}
-.prompt h1 {
-  padding: 0 20px;
-  line-height: 35px;
-  color: #fff;
-  font-family: 'Helvetica', 'Arial', sans-sefir;
-  font-size: 20px;
-  display: block;
-  text-decoration: none;
-  border-radius: 3px;
 }
