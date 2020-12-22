@@ -10,7 +10,7 @@ html
         for guild in guilds
           div.guild
             if guild.icon === null
-              img.circle(src="no_icon.png")
+              img.circle(src="/no_icon.png")
             else
               - const iconURL = `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.webp?size=64`
               img.circle(src=iconURL)

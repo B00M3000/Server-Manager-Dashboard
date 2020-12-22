@@ -1,14 +1,15 @@
-const fetch = require('node-fetch')
-
 function getHaveManageGuildGuilds(userGuilds) {
   return userGuilds.filter((guild) => (guild.permissions & 0x20) === 0x20)
 }
 
-function URLToURI(url){
-  return url.replace(':', '%3A').replace('/', '%2F')
+const CheckCredentials = (req, res, next) => {
+  const { access_token, token_type } = req.cookies
+  if(access_token && token_type) {
+    req.access_token = access_token
+    req.token_type = token_type
+    return next()
+  }
+  return res.redirect('/login')
 }
 
-module.exports = {
-  getHaveManageGuildGuilds: getHaveManageGuildGuilds,
-  URLtoURI: URLToURI
-}
+module.exports = { CheckCredentials, getHaveManageGuildGuilds }

@@ -3,7 +3,6 @@ const bodyParser = require('body-parser');
 const path = require('path')
 const cookieParser = require('cookie-parser');
 const http = require('http')
-const socketio = require('socket.io')
 
 const mongo = require('./mongo.js')
 const login = require('./routes/login.js')
@@ -31,13 +30,6 @@ app.use('/login', login)
 app.use('/dashboard', dashboard)
 app.use('/admin', admin)
 app.use('/invite', invite)
-
-app.get('/invite', (req, res) => {
-  const guildID = req.query.guild_id
-  var inviteLink = `https://discord.com/api/oauth2/authorize?client_id=${process.env.CLIENT_ID}&permissions=8&redirect_uri=${process.env.URL}/dashboard&response_type=code&scope=bot%20identify%20applications.commands`
-  if(guildID) inviteLink += `&guild_id=${guildID}`
-  res.redirect(inviteLink)
-})
 
 // Handle 404
 app.use((req, res) => {
