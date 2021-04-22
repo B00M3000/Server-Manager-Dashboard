@@ -4,15 +4,17 @@ const path = require('path')
 const cookieParser = require('cookie-parser');
 const http = require('http')
 
-const mongo = require('./mongo.js')
+const Database = require('./database.js')
+
 const login = require('./routes/login.js')
 const dashboard = require('./routes/dashboard')
 const admin = require('./routes/admin.js')
 const invite = require('./routes/invite.js')
-
-const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay))
+const account = require('./routes/account.js')
+const api = require('./routes/api')
 
 const app = express();
+const database = new Database(process.env.MONGOPATH)
 
 const PORT = process.env.PORT || 8080
 
@@ -30,6 +32,8 @@ app.use('/login', login)
 app.use('/dashboard', dashboard)
 app.use('/admin', admin)
 app.use('/invite', invite)
+app.use('/account', account)
+app.use('/api', api)
 
 // Handle 404
 app.use((req, res) => {
@@ -48,6 +52,6 @@ app.listen(PORT, async () => {
   console.log(`Application is online and listening to port ${PORT}`)
 })
 
-mongo().then(connection => {
-  console.log('MongoDB connection established!')
+database.connect().then(connection => {
+  console.log(`MongoDB Connection Established!`)
 })

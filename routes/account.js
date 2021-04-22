@@ -9,10 +9,15 @@ router.use(CheckCredentials)
 router.get('/', async (req, res) => {
   const { access_token, token_type } = req
 
+  const user = await discord_api.get_user({access_token, token_type})
   
+  user.roblox = {
+    id: "54645645",
+    username: "Tacos",
+  }
   
   res.render('account_dashboard', { 
-    guilds: haveManageGuildGuilds,
+    user,
     subtitle: 'Account'
   })
 })

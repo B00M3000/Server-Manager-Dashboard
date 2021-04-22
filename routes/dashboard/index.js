@@ -1,8 +1,9 @@
 const express = require('express')
 var router = express.Router()
 
-const { getHaveManageGuildGuilds, CheckCredentials} = require('../utils.js')
-const discord_api = require('../discord_api.js')
+const { getHaveManageGuildGuilds, CheckCredentials} = require('../../utils.js')
+const discord_api = require('../../discord_api.js')
+const dashboard = require('./dashboard.js')
 
 router.use(CheckCredentials)
 
@@ -23,20 +24,6 @@ router.get('/', async (req, res) => {
   })
 })
 
-router.get('/:id', async (req, res) => {
-  const { access_token, token_type } = req.cookies
-
-  const guildID = req.params.id
-
-  const userGuilds = await discord_api.get_guilds({token_type, access_token})
-
-  var guild = userGuilds.find(guild => guild.id === guildID)
-  if(!guild) return res.redirect('/dashboard')
-
-  res.render('server_dashboard', {
-    guild,
-    subtitle: guild.name
-  })
-})
+router.use('/:id', dashboard)
 
 module.exports = router

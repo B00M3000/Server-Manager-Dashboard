@@ -1,0 +1,43 @@
+doctype html
+html 
+  head
+    // include includes/header
+    link(rel="stylesheet" href="/css/embed_generator.css" type="text/css")
+  body
+    div.center
+      h1 Create an Embed
+    div.center.roundedBox.halfSizeContainer
+     form#form.textAlignLeft
+        div#embedOptions
+          div
+            label(for="providerName") Provider Name:
+            input#providerName(type="text" name="providerName" size="50" maxlength="256")
+          div
+            label(for="providerUrl") Provider URL:
+            input#providerUrl(type="text" name="providerUrl" size="50")
+          div
+            label(for="authorName") Author Name:
+            input#authorName(type="text" name="authorName" size="50" maxlength="256")
+          div
+            label(for="authorUrl") Author URL:
+            input#authorUrl(type="text" name="authorUrl" size="50")
+          div
+            label(for="title") Title:
+            input#title(type="text" name="title" size="50" maxlength="256")
+          div
+            label(for="description" style="vertical-align: middle") Description:
+            textarea#description(name="description" rows="5" cols="51" wrap="soft" maxlength="2048" style="vertical-align: middle")
+          div
+            label(for="type") Type:
+            input#type(type="text" name="type" size="50")
+          div
+            label(for="image") Image URL:
+            input#image(type="text" name="image" size="50")
+          div
+            label(for="image") Image URL: 
+            input#color(type="color" name="color")
+        div
+          input#submit(type="submit" name="submit")
+    div.center.roundedBox.halfSizeContainer
+      div#response.textAlignLeft Submit the form to get an embed link.
+    script(src="/js/embed_generator.js")

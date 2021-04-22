@@ -1,1 +1,18 @@
 doctype html
+html
+  head
+    include includes/header.pug
+  body
+    - const tag = `${user.username}#${user.discriminator}`
+    h1= tag
+  if user.roblox
+    div.roblox
+      h2 Roblox Info
+      - const RobloxProfileLink = `https://roblox.com`
+      h3= user.roblox.username
+      a(href=RobloxProfileLink) roblox profile
+  if user.mindustry
+    div.mindustry
+      h2 Mindustry Stats
+      h2 Score: 
+      h3= user.mindustry.score
